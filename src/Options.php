@@ -287,6 +287,13 @@ class Options
     private $adminPassword = "password";
 
     /**
+     * Whether to use Arabic language
+     * 
+     * @var bool
+     */
+    private $arabic = false;
+
+    /**
      * @param array $attributes
      */
     public function __construct(array $attributes = null)
@@ -370,6 +377,8 @@ class Options
                 $this->setAdminUsername($value);
             } elseif ($key === 'adminPassword' || $key === 'admin_password') {
                 $this->setAdminPassword($value);
+            } elseif ($key === 'arabic') {
+                $this->setArabic($value);
             }
         }
         return $this;
@@ -1001,5 +1010,23 @@ class Options
     public function getRootDir()
     {
         return $this->rootDir;
+    }
+
+    /**
+     * @param string $rootDir
+     * @return $this
+     */
+    public function setArabic($arabic)
+    {
+        $this->arabic = $arabic;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getArabic()
+    {
+        return $this->arabic;
     }
 }
