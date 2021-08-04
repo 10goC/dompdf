@@ -276,6 +276,13 @@ class Options
     private $pdflibLicense = "";
 
     /**
+     * Whether to use Arabic language
+     * 
+     * @var bool
+     */
+    private $arabic = false;
+
+    /**
      * @param array $attributes
      */
     public function __construct(array $attributes = null)
@@ -356,6 +363,8 @@ class Options
                 $this->setPdfBackend($value);
             } elseif ($key === 'pdflibLicense' || $key === 'pdflib_license') {
                 $this->setPdflibLicense($value);
+            } elseif ($key === 'arabic') {
+                $this->setArabic($value);
             }
         }
         return $this;
@@ -955,5 +964,23 @@ class Options
     public function getRootDir()
     {
         return $this->rootDir;
+    }
+
+    /**
+     * @param string $rootDir
+     * @return $this
+     */
+    public function setArabic($arabic)
+    {
+        $this->arabic = $arabic;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getArabic()
+    {
+        return $this->arabic;
     }
 }

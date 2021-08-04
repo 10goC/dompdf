@@ -9,6 +9,7 @@
  */
 namespace Dompdf\Renderer;
 
+use ArPHP\I18N\Arabic;
 use Dompdf\Adapter\CPDF;
 use Dompdf\Frame;
 
@@ -80,6 +81,14 @@ class Text extends AbstractRenderer
           array($this->_canvas->get_page_number()),
           $text
         );*/
+
+        /**
+         * https://github.com/dompdf/dompdf/issues/712#issuecomment-171533682
+         */
+        if ($frame->get_dompdf()->getOptions()->getArabic()) {
+            $Arabic = new Arabic('Glyphs');
+            $text = $Arabic->utf8Glyphs($text);
+        }
 
         $this->_canvas->text($x, $y, $text,
             $font, $size,
